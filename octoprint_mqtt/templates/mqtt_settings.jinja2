@@ -1,0 +1,28 @@
+ <form class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label">{{ _('Host') }}</label>
+        <div class="controls">
+            <input type="text" class="input-block-level" data-bind="value: settings.plugins.mqtt.host">
+        </div>
+        <br>
+        <label class="control-label">{{ _('Port') }}</label>
+        <div class="controls">
+            <input type="text" class="input-block-level" data-bind="value: settings.plugins.mqtt.port">
+        </div>
+        <br>
+        <label class="control-label">{{ _('Topic') }}</label>
+        <div class="controls">
+            <input type="text" class="input-block-level" data-bind="value: settings.plugins.mqtt.topic">
+        </div>
+        <br>
+        <label class="control-label">{{ _('Username') }}</label>
+        <div class="controls">
+            <input type="text" class="input-block-level" data-bind="value: settings.plugins.mqtt.username">
+        </div>
+        <br>
+        <label class="control-label">{{ _('Password') }}</label>
+        <div class="controls">
+            <input type="password" class="input-block-level" data-bind="value: settings.plugins.mqtt.password">
+        </div>
+    </div>
+</form>
