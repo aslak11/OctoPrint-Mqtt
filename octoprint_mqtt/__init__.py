@@ -48,10 +48,10 @@ class MqttPlugin(octoprint.plugin.SettingsPlugin, octoprint.plugin.AssetPlugin, 
 	def on_event(self, event, payload):
 		if event == "SettingsUpdated":
 			self.client.disconnect()
-			self.client.username_pw_set(self._settings.get(["username"]), self._settings.get(["password"]))
 			self.Connected = False
 		self._logger.info(self.Connected)
 		if not self.Connected:
+			self.client.username_pw_set(self._settings.get(["username"]), self._settings.get(["password"]))
 			self.client.connect(self._settings.get(["host"]), self._settings.get(["port"]))
 			self.Connected = True
 		# self._logger.info(self.client.publish("octoprint/" + event, json.dumps(payload)))
