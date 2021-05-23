@@ -55,8 +55,14 @@ class MqttPlugin(octoprint.plugin.SettingsPlugin, octoprint.plugin.AssetPlugin, 
 			self.client.connect(self._settings.get(["host"]), self._settings.get(["port"]))
 			self.Connected = True
 		# self._logger.info(self.client.publish("octoprint/" + event, json.dumps(payload)))
-		self._logger.info(
-			self.client.publish(self._settings.get(["topic"]), json.dumps({"payload": payload, "event": event})))
+		response = self.client.publish(self._settings.get(["topic"]), json.dumps({"payload": payload, "event": event}))
+		self._logger.info(response)
+		if response[1] > 100:
+			self._logger.info("reconnecting")
+			self.client = mqtt.Client()
+			self.client.username_pw_set(self._settings.get(["username"]), self._settings.get(["password"]))
+			self.client.connect(self._settings.get(["host"]), self._settings.get(["port"]))
+			self.Connected = True
 
 	def get_assets(self):
 		# Define your plugin's asset files to automatically include in the
