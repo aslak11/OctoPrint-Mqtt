@@ -57,7 +57,7 @@ class MqttPlugin(octoprint.plugin.SettingsPlugin, octoprint.plugin.AssetPlugin, 
 		# self._logger.info(self.client.publish("octoprint/" + event, json.dumps(payload)))
 		response = self.client.publish(self._settings.get(["topic"]), json.dumps({"payload": payload, "event": event}))
 		self._logger.info(response)
-		if response[1] > 100:
+		if response[1] > 10:
 			self._logger.info("reconnecting")
 			self.client = mqtt.Client()
 			self.client.username_pw_set(self._settings.get(["username"]), self._settings.get(["password"]))
